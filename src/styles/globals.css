@@ -66,4 +66,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  .min-h-screen-minus-80 {
+    @apply min-h-screen;
+    min-height: calc(100vh - 80px);
+  }
 }

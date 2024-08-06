@@ -2,9 +2,10 @@
 
 import { ModeToggle } from "@/components/mode-toggle";
 import Logo from "./logo";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Navigation } from "./navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
@@ -16,9 +17,14 @@ export default function Header() {
     <header className="flex min-h-20 justify-center">
       <nav className="container fixed flex items-center justify-between bg-background/70 py-4 backdrop-blur-sm">
         <div className="flex items-center gap-4">
-          <Button variant="ghost" size="icon" className="h-12 w-12">
+          <Link
+            href="/"
+            className={
+              buttonVariants({ variant: "ghost", size: "icon" }) + "h-12 w-12"
+            }
+          >
             <Logo size={40} />
-          </Button>
+          </Link>
           <div className="hidden md:block">
             <Navigation />
           </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { login } from "../(auth)/actions";
+import { signup } from "../(auth)/actions";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -24,8 +24,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
 import { useState } from "react";
+import Link from "next/link";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 
 const formSchema = z.object({
@@ -37,7 +37,7 @@ const formSchema = z.object({
   }),
 });
 
-export default function LoginPage() {
+export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -49,7 +49,7 @@ export default function LoginPage() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    login(values);
+    signup(values);
   }
 
   return (
@@ -57,8 +57,8 @@ export default function LoginPage() {
       <section className="max-w-sm flex-1">
         <Card>
           <CardHeader>
-            <CardTitle>Log in</CardTitle>
-            <CardDescription>Log in to CommunitySpot.</CardDescription>
+            <CardTitle>Sign up</CardTitle>
+            <CardDescription>Sign up to CommunitySpot.</CardDescription>
           </CardHeader>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)}>
@@ -132,12 +132,12 @@ export default function LoginPage() {
               </CardContent>
               <CardFooter className="flex items-center justify-between">
                 <Link
-                  href="/signup"
+                  href="/login"
                   className={buttonVariants({ variant: "link" })}
                 >
-                  Switch to Sign up
+                  Switch to Log in
                 </Link>
-                <Button type="submit">Log in</Button>
+                <Button type="submit">Sign up</Button>
               </CardFooter>
             </form>
           </Form>

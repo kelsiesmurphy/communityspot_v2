@@ -5,14 +5,12 @@ import { redirect } from "next/navigation";
 
 import { createClient } from "@/lib/utils/supabase/server";
 
-export async function login(formData: FormData) {
+export async function login(formData: { email: string; password: string }) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.email,
+    password: formData.password,
   };
 
   const { error } = await supabase.auth.signInWithPassword(data);
@@ -22,20 +20,31 @@ export async function login(formData: FormData) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/");
+  redirect("/private");
 }
 
-export async function signup(formData: FormData) {
+export async function signup(formData: { email: string; password: string }) {
   const supabase = createClient();
 
-  // type-casting here for convenience
-  // in practice, you should validate your inputs
   const data = {
-    email: formData.get("email") as string,
-    password: formData.get("password") as string,
+    email: formData.email,
+    password: formData.password,
   };
 
   const { error } = await supabase.auth.signUp(data);
+
+  if (error) {
+    redirect("/error");
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/private");
+}
+
+export async function signout() {
+  const supabase = createClient();
+
+  const { error } = await supabase.auth.signOut();
 
   if (error) {
     redirect("/error");
