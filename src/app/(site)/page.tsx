@@ -1,10 +1,9 @@
-import { Button } from "@/components/ui/button";
-
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center gap-4 p-24">
-      <h1>Top level Home</h1>
-      <Button>Test</Button>
+    <main className="container flex min-h-screen flex-col items-center gap-4 py-32">
+      <h1 className="text-center text-5xl font-bold transition-all md:text-6xl">
+        Homepage
+      </h1>
     </main>
   );
 }

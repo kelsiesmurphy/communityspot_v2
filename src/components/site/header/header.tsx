@@ -4,7 +4,6 @@ import { ModeToggle } from "@/components/mode-toggle";
 import Logo from "./logo";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "./navigation";
-import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
@@ -14,16 +13,16 @@ export default function Header() {
   };
 
   return (
-    <>
-      <header className="container flex items-center justify-between py-4">
-        <nav className="flex items-center gap-4">
+    <header className="flex min-h-20 justify-center">
+      <nav className="container fixed flex items-center justify-between bg-background/70 py-4 backdrop-blur-sm">
+        <div className="flex items-center gap-4">
           <Button variant="ghost" size="icon" className="h-12 w-12">
             <Logo size={40} />
           </Button>
           <div className="hidden md:block">
             <Navigation />
           </div>
-        </nav>
+        </div>
         <div className="hidden items-center gap-4 md:flex">
           <ModeToggle />
           <Button>Get started</Button>
@@ -50,12 +49,12 @@ export default function Header() {
             }`}
           ></span>
         </Button>
-      </header>
+      </nav>
       {mobileMenuOpen && (
         <div className="absolute top-0 mt-20 min-h-screen w-full bg-background p-8">
           <p>Add Mobile header here</p>
         </div>
       )}
-    </>
+    </header>
   );
 }
