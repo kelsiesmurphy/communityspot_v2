@@ -20,7 +20,7 @@ export async function login(formData: { email: string; password: string }) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/private");
+  redirect("/account");
 }
 
 export async function signup(formData: { email: string; password: string }) {
@@ -38,5 +38,5 @@ export async function signup(formData: { email: string; password: string }) {
   }
 
   revalidatePath("/", "layout");
-  redirect("/private");
+  redirect("/account");
 }
