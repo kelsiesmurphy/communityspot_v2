@@ -40,16 +40,3 @@ export async function signup(formData: { email: string; password: string }) {
   revalidatePath("/", "layout");
   redirect("/private");
 }
-
-export async function signout() {
-  const supabase = createClient();
-
-  const { error } = await supabase.auth.signOut();
-
-  if (error) {
-    redirect("/error");
-  }
-
-  revalidatePath("/", "layout");
-  redirect("/");
-}
