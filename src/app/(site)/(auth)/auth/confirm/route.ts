@@ -22,5 +22,4 @@ export async function GET(request: NextRequest) {
   }
 
   redirect("/error");
-  å;
 }
